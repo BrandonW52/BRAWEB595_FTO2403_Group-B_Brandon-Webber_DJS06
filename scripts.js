@@ -28,27 +28,55 @@ const products = [
   { product: "tea", price: "" },
 ];
 
+// 1
 // ForEach Basics:forEach to log each name and each province to the console. Then, log each name with a matching province in the format "Name (Province)".
-names.forEach((element) => console.log(element));
-provinces.forEach((element) => console.log(element));
+names.forEach((name) => console.log(name));
+provinces.forEach((province) => console.log(province));
 
-// Loops through provinces object and uses index to
-provinces.forEach((element, i) => {
-  console.log(`${names[i]} (${element})`);
+// Loops through provinces object and uses index to add name
+provinces.forEach((province, i) => {
+  console.log(`${names[i]} (${province})`);
   i++;
 });
 
+// 2
 // Uppercase Transformation: Use map to create a new array of province names in all uppercase. Log the new array to the console.
+const uppercaseProvinces = provinces.map((province) => {
+  return province.toUpperCase();
+});
+console.log(uppercaseProvinces);
 
+// 3
 // Name Lengths: Create a new array using map that contains the length of each name.
+const nameLengths = names.map((name) => {
+  return name.length;
+});
+console.log(nameLengths);
 
+// 4
 // Sorting: Use sort to alphabetically sort the provinces.
+console.log(provinces.sort());
 
+// 5
 // Filtering Cape: Use filter to remove provinces containing "Cape". Log the count of remaining provinces.
+const remainingProvinces = provinces.filter((province) => {
+  return !province.match("Cape");
+  // Returns the number of provinces that don't contain "Cape"
+}).length;
+console.log(remainingProvinces);
 
+// 6
 // Finding 'S': Create a boolean array using map and some to determine if a name contains the letter 'S'.
+const findingS = names.map((name) => {
+  // Brakes names down into letters and checks for "S"
+  return name.split("").some((letter) => letter == "S");
+});
+console.log(findingS);
 
+// 7
 // Creating Object Mapping: Use reduce to transform the names array into an object mapping names to their respective provinces.
+const objectMapping = names.reduce(() => {});
+console.log(objectMapping);
 
 // Advanced Exercises (Single console.log Execution)
 // For these exercises, wrap your logic in a single console.log statement:
