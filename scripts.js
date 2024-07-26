@@ -75,20 +75,57 @@ console.log(findingS);
 
 // 7
 // Creating Object Mapping: Use reduce to transform the names array into an object mapping names to their respective provinces.
-const objectMapping = names.reduce(() => {});
+const objectMapping = names.reduce((acc, name, i) => {
+  acc[name] = provinces[i];
+  return acc;
+}, {});
 console.log(objectMapping);
 
 // Advanced Exercises (Single console.log Execution)
 // For these exercises, wrap your logic in a single console.log statement:
 
+// 1
 // Log Products: Iterate over the products array, logging each product name.
+console.log(...products.map((item) => item.product));
 
+// 2
 // Filter by Name Length: Filter out products with names longer than 5 characters.
+console.log(products.filter((item) => item.product.length <= 5));
 
+// 3
 // Price Manipulation: Filter out products without prices, convert string prices to numbers, and calculate the total price using reduce.
+console.log(
+  products
+    // Filter out products without prices
+    .filter((item) => Number(item.price) >= 1)
+    // calculates the total price
+    .reduce((acc, currentValue) => acc + Number(currentValue.price), 0)
+);
 
+// 4
 // Concatenate Product Names: Use reduce to concatenate all product names into a single string.
+console.log(
+  products.reduce((acc, currentValue) => acc + currentValue.product, "")
+);
 
+// 5
 // Find Extremes in Prices: Identify the highest and lowest-priced items, returning a string formatted as "Highest: X. Lowest: Y."
+const minMaxPrice = products
+  // Filter out products without prices
+  .filter((item) => Number(item.price) >= 1)
+  // Converts to an object containg the prices
+  .map((item) => item.price);
 
+const min = Math.min(...minMaxPrice);
+const max = Math.max(...minMaxPrice);
+
+console.log(`Highest: ${max}`, "\n", `Lowest: ${min}`);
+
+// 6
 // Object Transformation: Using Object.entries and reduce, recreate the products object with keys 'name' and 'cost', maintaining their original values.
+console.log(
+  Object.entries(products).reduce((acc, [i, product]) => {
+    acc[i] = { name: product.product, cost: product.price };
+    return acc;
+  }, {})
+);
